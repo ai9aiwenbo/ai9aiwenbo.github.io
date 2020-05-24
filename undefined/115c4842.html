@@ -23,20 +23,20 @@
     var CONFIG = {"hostname":"ai9aiwenbo.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"appID":"KY93C1XW9H","apiKey":"495a505514103074c6705c3f1287b8f8","indexName":"blog","hits":{"per_page":10},"labels":{"input_placeholder":"请输入关键字","hits_empty":"没有找到与 ${query} 相关的内容","hits_stats":"${hits} 条相关记录，共耗时 ${time}ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="说明 fit和transform是数据处理的两个环节,没有任何关系 sklearn的算法在使用前都要用fit，fit之后才能够调用各种API方法 fit只是为数据适配的一个过程，即求得训练集的均值，方差，最大值，最小值等数据，transform在此基础上对数据进行标准化，降维，归一化等操作  fit,transform,fit_transform常用情况">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://ai9aiwenbo.github.io/undefined/16107.html">
+<meta property="og:title" content="fit_transform,fit,transform的区别和使用">
+<meta property="og:url" content="http://ai9aiwenbo.github.io/undefined/115c4842.html">
 <meta property="og:site_name" content="Re:Luoye">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="说明 fit和transform是数据处理的两个环节,没有任何关系 sklearn的算法在使用前都要用fit，fit之后才能够调用各种API方法 fit只是为数据适配的一个过程，即求得训练集的均值，方差，最大值，最小值等数据，transform在此基础上对数据进行标准化，降维，归一化等操作  fit,transform,fit_transform常用情况">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-05-22T02:56:43.870Z">
-<meta property="article:modified_time" content="2020-05-23T06:16:23.347Z">
+<meta property="article:published_time" content="2020-05-24T06:54:12.000Z">
+<meta property="article:modified_time" content="2020-05-24T07:34:38.450Z">
 <meta property="article:author" content="Chen">
-<meta property="article:tag" content="杂记">
+<meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://ai9aiwenbo.github.io/undefined/16107.html">
+<link rel="canonical" href="http://ai9aiwenbo.github.io/undefined/115c4842.html">
 
 
 <script id="page-configurations">
@@ -49,7 +49,7 @@
   };
 </script>
 
-  <title>Hello World | Re:Luoye</title>
+  <title>fit_transform,fit,transform的区别和使用 | Re:Luoye</title>
   
 
 
@@ -208,7 +208,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ai9aiwenbo.github.io/undefined/16107.html">
+    <link itemprop="mainEntityOfPage" href="http://ai9aiwenbo.github.io/undefined/115c4842.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/30115926?s=400&u=5e6b8ea23b139323fb38a30882953ca3a54b8413&v=4">
@@ -222,7 +222,7 @@
 	
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          fit_transform,fit,transform的区别和使用
         </h1>
 
         <div class="post-meta">
@@ -231,19 +231,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-05-22 10:56:43" itemprop="dateCreated datePublished" datetime="2020-05-22T10:56:43+08:00">2020-05-22</time>
+              <time title="创建时间：2020-05-24 14:54:12 / 修改时间：15:34:38" itemprop="dateCreated datePublished" datetime="2020-05-24T14:54:12+08:00">2020-05-24</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-23 14:16:23" itemprop="dateModified" datetime="2020-05-23T14:16:23+08:00">2020-05-23</time>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
               </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                </span>
+            </span>
 
           
-            <span id="/undefined/16107.html" class="post-meta-item leancloud_visitors" data-flag-title="Hello World" title="阅读次数">
+            <span id="/undefined/115c4842.html" class="post-meta-item leancloud_visitors" data-flag-title="fit_transform,fit,transform的区别和使用" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -265,8 +268,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/undefined/16107.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/undefined/16107.html" itemprop="commentCount"></span>
+    <a title="valine" href="/undefined/115c4842.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/undefined/115c4842.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -276,14 +279,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>357</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -295,19 +298,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
+<li>fit和transform是数据处理的两个环节,没有任何关系</li>
+<li>sklearn的算法在使用前都要用fit，fit之后才能够调用各种API方法</li>
+<li>fit只是为数据适配的一个过程，即求得训练集的均值，方差，最大值，最小值等数据，transform在此基础上对数据进行标准化，降维，归一化等操作</li>
+</ul>
+<h2 id="fit-transform-fit-transform常用情况"><a href="#fit-transform-fit-transform常用情况" class="headerlink" title="fit,transform,fit_transform常用情况"></a>fit,transform,fit_transform常用情况</h2><h3 id="1-数据预处理中的方法（使用StandardScaler实现标准化数据）"><a href="#1-数据预处理中的方法（使用StandardScaler实现标准化数据）" class="headerlink" title="1.数据预处理中的方法（使用StandardScaler实现标准化数据）"></a>1.数据预处理中的方法（使用StandardScaler实现标准化数据）</h3><ul>
+<li><p>fit在python3.7中查看fit的 API (使用不同的API的fit方法描述可能不同，但大体上都是计算数据集的一些固有属性)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">   <span class="string">"""Compute the mean and std to be used for later scaling.</span></span><br><span class="line"><span class="string">   计算数据的均值和方差 方便以后的数据转换  个人理解为适配的一个过程</span></span><br><span class="line"><span class="string">   Parameters</span></span><br><span class="line"><span class="string">   ----------</span></span><br><span class="line"><span class="string">   X : &#123;array-like, sparse matrix&#125;, shape [n_samples, n_features]</span></span><br><span class="line"><span class="string">       The data used to compute the mean and standard deviation</span></span><br><span class="line"><span class="string">       used for later scaling along the features axis.</span></span><br><span class="line"><span class="string">   y</span></span><br><span class="line"><span class="string">       Ignored</span></span><br><span class="line"><span class="string">   """</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># Reset internal state before fitting</span></span><br><span class="line">   self._reset()</span><br><span class="line">   <span class="keyword">return</span> self.partial_fit(X, y)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>transform</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">transform</span><span class="params">(self, X, copy=None)</span>:</span></span><br><span class="line">    <span class="string">"""Perform standardization by centering and scaling</span></span><br><span class="line"><span class="string">     对数据进行均值和方差的转化（看具体用的是哪个工具，如PCA，StandardScaler等）  转换过程</span></span><br><span class="line"><span class="string">    Parameters</span></span><br><span class="line"><span class="string">    ----------</span></span><br><span class="line"><span class="string">    X : array-like, shape [n_samples, n_features]</span></span><br><span class="line"><span class="string">        The data used to scale along the features axis.</span></span><br><span class="line"><span class="string">    copy : bool, optional (default: None)</span></span><br><span class="line"><span class="string">        Copy the input X or not.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">          ...</span><br><span class="line">    <span class="keyword">return</span> X</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>fit_transform</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fit_transform</span><span class="params">(self, X, y=None, **fit_params)</span>:</span></span><br><span class="line">       <span class="string">"""Fit to data, then transform it.</span></span><br><span class="line"><span class="string">          既包含适配又包含转换过程</span></span><br><span class="line"><span class="string">       Fits transformer to X and y with optional parameters fit_params</span></span><br><span class="line"><span class="string">       and returns a transformed version of X.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">       Parameters</span></span><br><span class="line"><span class="string">       ----------</span></span><br><span class="line"><span class="string">       X : numpy array of shape [n_samples, n_features]</span></span><br><span class="line"><span class="string">           Training set.</span></span><br><span class="line"><span class="string">           训练集</span></span><br><span class="line"><span class="string">       y : numpy array of shape [n_samples]</span></span><br><span class="line"><span class="string">           Target values.</span></span><br><span class="line"><span class="string">           目标值</span></span><br><span class="line"><span class="string">       Returns</span></span><br><span class="line"><span class="string">       -------</span></span><br><span class="line"><span class="string">       X_new : numpy array of shape [n_samples, n_features_new]</span></span><br><span class="line"><span class="string">           Transformed array.</span></span><br><span class="line"><span class="string">           返回一个转换的数组</span></span><br><span class="line"><span class="string">       """</span></span><br><span class="line">       <span class="comment"># non-optimized default implementation; override when a better</span></span><br><span class="line">       <span class="comment"># method is possible for a given clustering algorithm</span></span><br><span class="line">       <span class="keyword">if</span> y <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">           <span class="comment"># fit method of arity 1 (unsupervised transformation)</span></span><br><span class="line">           <span class="keyword">return</span> self.fit(X, **fit_params).transform(X)</span><br><span class="line">       <span class="keyword">else</span>:</span><br><span class="line">           <span class="comment"># fit method of arity 2 (supervised transformation)</span></span><br><span class="line">           <span class="keyword">return</span> self.fit(X, y, **fit_params).transform(X)</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-使用方式"><a href="#2-使用方式" class="headerlink" title="2.使用方式"></a>2.使用方式</h3><p>一般对训练集进行fit之后，对于测试集使用同样的均值、方差、最大值、最小值等指标进行transform转换，从而保证train、test处理的方式相同</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line">std = StandardScaler()</span><br><span class="line">std.fit_tranform(X_train)</span><br><span class="line">std.tranform(X_test)</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>各种算法的fit、transform、fit_transform大同小异，做类似的处理。</p>
+<p><strong>参考博客</strong><br><a href="https://blog.csdn.net/weixin_38278334/article/details/82971752" target="_blank" rel="noopener">fit_transform,fit,transform区别和作用详解！！！！！！</a></p>
 
     </div>
 
@@ -315,12 +327,6 @@
     
     
       
-  <div class="popular-posts-header">相关文章</div>
-  <ul class="popular-posts">
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\undefined\14373.html" rel="bookmark">Test</a></div>
-    </li>
-  </ul>
 
  <div>
   
@@ -340,7 +346,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E6%9D%82%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 杂记</a>
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
           </div>
 
         
@@ -353,11 +359,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/undefined/14373.html" rel="next" title="Test">
-      Test <i class="fa fa-chevron-right"></i>
+    <a href="/undefined/14373.html" rel="prev" title="Test">
+      <i class="fa fa-chevron-left"></i> Test
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -417,7 +423,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#说明"><span class="nav-text">说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fit-transform-fit-transform常用情况"><span class="nav-text">fit,transform,fit_transform常用情况</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-数据预处理中的方法（使用StandardScaler实现标准化数据）"><span class="nav-text">1.数据预处理中的方法（使用StandardScaler实现标准化数据）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用方式"><span class="nav-text">2.使用方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></div>
       </div>
       <!--/noindex-->
 

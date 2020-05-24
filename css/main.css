@@ -1182,9 +1182,81 @@ pre .javascript .function {
 .book-mark-link-fixed {
   top: -2px;
 }
+.github-corner :hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+.github-corner svg {
+  border: 0;
+  color: #fff;
+  fill: #222;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
+@media (max-width: 991px) {
+  .github-corner {
+    display: none;
+  }
+  .github-corner svg {
+    color: #222;
+    fill: #fff;
+  }
+  .github-corner .github-corner:hover .octo-arm {
+    animation: none;
+  }
+  .github-corner .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
+@-moz-keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+@-webkit-keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+@-o-keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+@keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
 .sidebar {
   background: #222;
   bottom: 0;
+  box-shadow: inset 0 2px 6px #000;
   position: fixed;
   top: 0;
 }
@@ -1252,7 +1324,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #707740;
+  background: #d567fe;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1407,10 +1479,9 @@ li.recent_posts_li {
   line-height: 1.8;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .post-toc .nav .nav-child {
-  display: none;
+  display: block;
 }
 .post-toc .nav .active > .nav-child {
   display: block;
@@ -1575,16 +1646,30 @@ li.recent_posts_li {
   transition-timing-function: ease-in-out;
 }
 .back-to-top {
-  background: transparent;
-  margin: 8px -10px -20px;
-  opacity: 0;
+  background: #222;
+  bottom: -100px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  left: 30px;
+  opacity: 0.6;
+  padding: 0 6px;
+  position: fixed;
+  transition-property: bottom;
+  z-index: 1300;
+  width: initial;
+}
+.back-to-top:hover {
+  color: #fc6423;
 }
 .back-to-top.back-to-top-on {
-  cursor: pointer;
-  opacity: 0.6;
+  bottom: 30px;
 }
-.back-to-top.back-to-top-on:hover {
-  opacity: 0.8;
+@media (max-width: 991px) {
+  .back-to-top {
+    left: 20px;
+    opacity: 0.8;
+  }
 }
 .reading-progress-bar {
   background: #37c6c0;
@@ -2639,13 +2724,6 @@ mjx-container + br {
 .links-of-blogroll-item {
   padding: 0;
 }
-.back-to-top {
-  background: var(--body-bg-color);
-  margin: -4px -10px -18px;
-}
-.back-to-top.back-to-top-on {
-  margin-top: 16px;
-}
 .content-wrap {
   background: initial;
   box-shadow: initial;
@@ -2831,7 +2909,7 @@ mjx-container + br {
   -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
-/*归档页样式优化 began*/
+/* 归档页样式 began */
 .page-archive .archive-page-counter {
   font-size: 18px;
   background-color: #49b1f5;
@@ -2878,7 +2956,7 @@ a.my-post-title-link:before {
   transform: scale(1.1);
   box-shadow: 10px 10px 15px 2px rgba(0,0,0,0.12), 0 0 6px 0 rgba(104,104,105,0.1);
   border-radius: 30px;
-  width: 550px;
+  width: 400px;
   padding: 1px 10px;
   margin-left: 25px;
   font-size: 16px;
@@ -2952,7 +3030,7 @@ div.post-block.tag .collection-title h2 {
   font-size: 16px;
   transition-duration: 0.15s;
 }
-/*归档页样式优化 end */
+/* 归档页样式 end */
 .main {
   padding-bottom: 150px;
 }
@@ -3395,9 +3473,19 @@ details {
     font-size: 13px;
   }
   .back-to-top {
+    width: 70px;
+    height: 900px;
+    top: -900px;
+    bottom: unset;
+    transition: all 0.5s ease-in-out;
+    background: url("/images/scroll.j");
+  }
+  .back-to-top > i {
     display: none;
-    right: 0px;
-    opacity: 0.2;
+  }
+  .back-to-top.back-to-top-on {
+    bottom: unset;
+    top: calc(100vh - 900px - 200px);
   }
   .posts-expand .post-body h1 {
     margin: 0 0 0em;

@@ -13,22 +13,54 @@
     <title>Hello World</title>
     <url>/undefined/16107.html</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
       <tags>
         <tag>杂记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>fit_transform,fit,transform的区别和使用</title>
+    <url>/undefined/115c4842.html</url>
+    <content><![CDATA[<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
+<li>fit和transform是数据处理的两个环节,没有任何关系</li>
+<li>sklearn的算法在使用前都要用fit，fit之后才能够调用各种API方法</li>
+<li>fit只是为数据适配的一个过程，即求得训练集的均值，方差，最大值，最小值等数据，transform在此基础上对数据进行标准化，降维，归一化等操作</li>
+</ul>
+<h2 id="fit-transform-fit-transform常用情况"><a href="#fit-transform-fit-transform常用情况" class="headerlink" title="fit,transform,fit_transform常用情况"></a>fit,transform,fit_transform常用情况</h2><h3 id="1-数据预处理中的方法（使用StandardScaler实现标准化数据）"><a href="#1-数据预处理中的方法（使用StandardScaler实现标准化数据）" class="headerlink" title="1.数据预处理中的方法（使用StandardScaler实现标准化数据）"></a>1.数据预处理中的方法（使用StandardScaler实现标准化数据）</h3><ul>
+<li><p>fit在python3.7中查看fit的 API (使用不同的API的fit方法描述可能不同，但大体上都是计算数据集的一些固有属性)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">   <span class="string">"""Compute the mean and std to be used for later scaling.</span></span><br><span class="line"><span class="string">   计算数据的均值和方差 方便以后的数据转换  个人理解为适配的一个过程</span></span><br><span class="line"><span class="string">   Parameters</span></span><br><span class="line"><span class="string">   ----------</span></span><br><span class="line"><span class="string">   X : &#123;array-like, sparse matrix&#125;, shape [n_samples, n_features]</span></span><br><span class="line"><span class="string">       The data used to compute the mean and standard deviation</span></span><br><span class="line"><span class="string">       used for later scaling along the features axis.</span></span><br><span class="line"><span class="string">   y</span></span><br><span class="line"><span class="string">       Ignored</span></span><br><span class="line"><span class="string">   """</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># Reset internal state before fitting</span></span><br><span class="line">   self._reset()</span><br><span class="line">   <span class="keyword">return</span> self.partial_fit(X, y)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>transform</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">transform</span><span class="params">(self, X, copy=None)</span>:</span></span><br><span class="line">    <span class="string">"""Perform standardization by centering and scaling</span></span><br><span class="line"><span class="string">     对数据进行均值和方差的转化（看具体用的是哪个工具，如PCA，StandardScaler等）  转换过程</span></span><br><span class="line"><span class="string">    Parameters</span></span><br><span class="line"><span class="string">    ----------</span></span><br><span class="line"><span class="string">    X : array-like, shape [n_samples, n_features]</span></span><br><span class="line"><span class="string">        The data used to scale along the features axis.</span></span><br><span class="line"><span class="string">    copy : bool, optional (default: None)</span></span><br><span class="line"><span class="string">        Copy the input X or not.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">          ...</span><br><span class="line">    <span class="keyword">return</span> X</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>fit_transform</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fit_transform</span><span class="params">(self, X, y=None, **fit_params)</span>:</span></span><br><span class="line">       <span class="string">"""Fit to data, then transform it.</span></span><br><span class="line"><span class="string">          既包含适配又包含转换过程</span></span><br><span class="line"><span class="string">       Fits transformer to X and y with optional parameters fit_params</span></span><br><span class="line"><span class="string">       and returns a transformed version of X.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">       Parameters</span></span><br><span class="line"><span class="string">       ----------</span></span><br><span class="line"><span class="string">       X : numpy array of shape [n_samples, n_features]</span></span><br><span class="line"><span class="string">           Training set.</span></span><br><span class="line"><span class="string">           训练集</span></span><br><span class="line"><span class="string">       y : numpy array of shape [n_samples]</span></span><br><span class="line"><span class="string">           Target values.</span></span><br><span class="line"><span class="string">           目标值</span></span><br><span class="line"><span class="string">       Returns</span></span><br><span class="line"><span class="string">       -------</span></span><br><span class="line"><span class="string">       X_new : numpy array of shape [n_samples, n_features_new]</span></span><br><span class="line"><span class="string">           Transformed array.</span></span><br><span class="line"><span class="string">           返回一个转换的数组</span></span><br><span class="line"><span class="string">       """</span></span><br><span class="line">       <span class="comment"># non-optimized default implementation; override when a better</span></span><br><span class="line">       <span class="comment"># method is possible for a given clustering algorithm</span></span><br><span class="line">       <span class="keyword">if</span> y <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">           <span class="comment"># fit method of arity 1 (unsupervised transformation)</span></span><br><span class="line">           <span class="keyword">return</span> self.fit(X, **fit_params).transform(X)</span><br><span class="line">       <span class="keyword">else</span>:</span><br><span class="line">           <span class="comment"># fit method of arity 2 (supervised transformation)</span></span><br><span class="line">           <span class="keyword">return</span> self.fit(X, y, **fit_params).transform(X)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="2-使用方式"><a href="#2-使用方式" class="headerlink" title="2.使用方式"></a>2.使用方式</h3><p>一般对训练集进行fit之后，对于测试集使用同样的均值、方差、最大值、最小值等指标进行transform转换，从而保证train、test处理的方式相同</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line">std = StandardScaler()</span><br><span class="line">std.fit_tranform(X_train)</span><br><span class="line">std.tranform(X_test)</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>各种算法的fit、transform、fit_transform大同小异，做类似的处理。</p>
+<p><strong>参考博客</strong><br><a href="https://blog.csdn.net/weixin_38278334/article/details/82971752" target="_blank" rel="noopener">fit_transform,fit,transform区别和作用详解！！！！！！</a></p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
       </tags>
   </entry>
 </search>
