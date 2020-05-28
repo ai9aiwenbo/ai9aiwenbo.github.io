@@ -31,6 +31,41 @@
       </tags>
   </entry>
   <entry>
+    <title>Win10下 Anaconda+TensorFlow-GPU环境搭建</title>
+    <url>/undefined/c0315f88.html</url>
+    <content><![CDATA[<p>说明：只有NVIDIA显卡才支持用GPU跑TensorFlow（GPU版），在<a href="https://www.tensorflow.org/install/source_windows" target="_blank" rel="noopener">TensorFlow</a>安装的官网可以查看TensorFlow与CUDA对应的版本信息以及cuDNN.</p>
+<p>amd显卡也可以使用GPU ，不过要安装 ROCm 建立可替代CUDA的生态，目前只能在linux系统上使用。</p>
+<hr>
+<h2 id="1-安装Anaconda"><a href="#1-安装Anaconda" class="headerlink" title="1.安装Anaconda"></a>1.安装Anaconda</h2><p>下载地址：<a href="https://www.anaconda.com/products/individual" target="_blank" rel="noopener">Anaconda官网下载</a>  <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/?C=M&O=D" target="_blank" rel="noopener">清华软件园镜像下载地址</a><br> 以下是官网下载：<br><img src="https://i.loli.net/2020/05/28/bIgrD1qdf4GjTtx.png" alt="20200528142606641_20862.png"></p>
+<p>选择相应的版本下载，默认安装即可。</p>
+<hr>
+<h2 id="2-安装CUDA"><a href="#2-安装CUDA" class="headerlink" title="2.安装CUDA"></a>2.安装CUDA</h2><p>下载地址：<a href="https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exelocal" target="_blank" rel="noopener">CUDA官网下载</a><br><img src="https://i.loli.net/2020/05/28/xmtNi8U1LZTu3as.png" alt="20200528142944866_3993.png"></p>
+<p>选择适合系统的版本，默认安装即可。</p>
+<hr>
+<h2 id="3-下载cuDNN"><a href="#3-下载cuDNN" class="headerlink" title="3.下载cuDNN"></a>3.下载cuDNN</h2><p>下载地址：<a href="https://developer.nvidia.com/rdp/cudnn-archive" target="_blank" rel="noopener">cuDNN官网下载地址</a></p>
+<p><img src="https://i.loli.net/2020/05/28/aXv7u8LPIqmfkDK.png" alt="20200528143239297_9187.png"><br>选择与cuda和tensorflow-gpu相适应的版本进行下载，解压，把相应的文件加入到cuda的安装文件夹下即可。</p>
+<blockquote>
+<p>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0</p>
+<p>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\bin</p>
+<p>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\lib\x64</p>
+<p>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\libnvvp</p>
+</blockquote>
+<p>我这个是默认安装，放进自己的安装目录下就可以了。</p>
+<hr>
+<h2 id="4-安装tensorflow-gpu"><a href="#4-安装tensorflow-gpu" class="headerlink" title="4.安装tensorflow-gpu"></a>4.安装tensorflow-gpu</h2><p>在cmd下输入pip install -i <a href="https://pypi.mirrors.ustc.edu.cn/simple/" target="_blank" rel="noopener">https://pypi.mirrors.ustc.edu.cn/simple/</a> tensorflow-gpu==2.0.0 (因为原地址下载太慢了，所以零时使用清华的源下载，与之前的版本象对应)。</p>
+<p>安装好后可以用以下代码查看 gpu信息：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.python.client <span class="keyword">import</span> device_lib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">()</span>:</span></span><br><span class="line">    tf.test.gpu_device_name()</span><br><span class="line">    print(device_lib.list_local_devices())</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/05/28/sRgt8aixW5lGVTU.png" alt="20200528155218592_26086.png"></p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>tensorflow</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>fit_transform,fit,transform的区别和使用</title>
     <url>/undefined/115c4842.html</url>
     <content><![CDATA[<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
